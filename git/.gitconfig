@@ -1,0 +1,16 @@
+# This is Git's per-user configuration file.
+[user]
+	name = hongyu
+	email = hongyu@imandra.ai
+# Please adapt and uncomment the following lines:
+#	name = Lin Hongyu
+#	email = linhongyu@Lins-MacBook-Pro.local
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[core]
+	excludesfile = /Users/linhongyu/.gitignore_global
+[push]
+	autoSetupRemote = true

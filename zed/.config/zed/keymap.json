@@ -1,0 +1,214 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  // Toggle terminal panel
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-`": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-`": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-~": "workspace::NewTerminal"
+    }
+  },
+  // <LazyVim>
+  // Use space-e to toggle project panel
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // After showing the project panel, it will automatically be focused.
+      "space e": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "ProjectPanel && menu",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock"
+    }
+  },
+  // LazyVim: File Explorer
+  {
+    "context": "ProjectPanel && menu && !editing",
+    "bindings": {
+      "q": "workspace::ToggleLeftDock",
+      "a": "project_panel::NewFile",
+      "d": "project_panel::Delete",
+      "l": "project_panel::ExpandSelectedEntry",
+      "y": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "ProjectPanel && menu && !editing",
+    "bindings": {
+      // "l" is defined twice because we want to make expanding take precedence
+      "l": "project_panel::Open",
+      "shift-y": "workspace::CopyPath"
+    }
+  },
+  // LazyVim: Save File
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-s": "workspace::Save"
+    }
+  },
+  // Buffer navigation and split panes navigation
+  // with shift/ctrl + hkjl
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      // "shift-j": "workspace::ActivatePaneDown",
+      // "shift-k": "workspace::ActivatePaneUp",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+  // space space to open file finder
+  {
+    "context": "VimControl && !(vim_mode == insert)",
+    "bindings": {
+      "space space": "file_finder::Toggle"
+    }
+  },
+  // Window split using space + | or space + -
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space |": "pane::SplitRight",
+      "space -": "pane::SplitDown"
+    }
+  },
+  // Add comment below and above
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "g c c": "editor::ToggleComments",
+      "g c o": ["workspace::SendKeystrokes", "o escape g c c shift-a"],
+      "g c shift-o": [
+        "workspace::SendKeystrokes",
+        "shift-o escape g c c shift-a"
+      ]
+    }
+  },
+  // LSP
+  {
+    "context": "VimControl && !(vim_mode == insert)",
+    "bindings": {
+      "shift-k": "editor::Hover"
+    }
+  },
+  // Git
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "LazyGit", "reveal_target": "center" }
+      ]
+    }
+  },
+  // Navigate quickfix / diagnostic / error / warning
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "[ q": "editor::GoToPreviousDiagnostic",
+      "] q": "editor::GoToDiagnostic"
+    }
+  },
+  // Buffer related: space + b
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space b b": "pane::ActivatePreviousItem",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseInactiveItems",
+      "space b p": "pane::TogglePinTab",
+      "space b shift-p": "pane::CloseCleanItems"
+    }
+  },
+  // Search related: space + s
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space s s": "outline::Toggle"
+    }
+  },
+  // File/Find related: space + f
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f n": "workspace::NewFile"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space f f": "outline::Toggle"
+    }
+  },
+  // Window related: space + w
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      // "space w d": "pane::CloseSplit"
+    }
+  },
+  // Code related: space + c
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space c f": "editor::Format",
+      "space c r": "editor::Rename",
+      "space c a": "editor::ToggleCodeActions"
+    }
+  },
+  // </LazyVim>
+  //
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "shift-y": ["workspace::SendKeystrokes", "y $"] // Use neovim's yank behavior: yank to end of line.
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // Put key bindings here (in addition to the context above) if you want them to
+      // work when no editor exists.
+      // "space f": "file_finder::Toggle"
+    }
+  }
+]

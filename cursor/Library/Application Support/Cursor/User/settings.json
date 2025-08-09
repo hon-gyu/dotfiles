@@ -1,0 +1,417 @@
+{
+    // =========================
+    // Editor Settings
+    // =========================
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.ruff": "explicit",
+        "source.organizeImports.ruff": "explicit"
+    },
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [
+        88
+    ],
+    "editor.guides.bracketPairs": true,
+    "editor.quickSuggestionsDelay": 20,
+    "editor.find.autoFindInSelection": "multiline",
+    "editor.smoothScrolling": true,
+    "editor.tabSize": 4,
+    "editor.indentSize": "tabSize",
+    "editor.largeFileOptimizations": false,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace, CommitMono",
+    "editor.formatOnType": false,
+    "editor.detectIndentation": false,
+    // =========================
+    // Workbench & UI
+    // =========================
+    "workbench.tree.indent": 20,
+    "workbench.tree.renderIndentGuides": "always",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorCustomizations": {},
+    "workbench.list.smoothScrolling": true,
+    "workbench.editorLargeFileConfirmation": 200,
+    "workbench.editorAssociations": {
+        "*.proto": "default"
+    },
+    // =========================
+    // Terminal
+    // =========================
+    "terminal.integrated.inheritEnv": false,
+    // "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.defaultProfile.linux": "/usr/bin/zsh",
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.enableVisualBell": true,
+    "terminal.integrated.sendKeybindingsToShell": true,
+    // =========================
+    // File & Problems
+    // =========================
+    "files.associations": {
+        "*.ipynb": "jupyter",
+        "*.iml": "imandra"
+    },
+    "problems.exclude": {
+        "**/node_modules/**": true,
+        "**/.venv/**": true
+    },
+    // =========================
+    // Python
+    // =========================
+    "python.terminal.executeInFileDir": true,
+    "python.analysis.autoFormatStrings": true,
+    "python.createEnvironment.trigger": "off",
+    "multiCommand.commands": [
+        {
+            "command": "multiCommand.runPytestAndFocusTerminal",
+            "sequence": [
+                // "workbench.action.terminal.focus",
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": {
+                        "text": "cd ${workspaceFolder} && uv run pytest ${file} -s\n"
+                    }
+                }
+            ]
+        },
+        {
+            "command": "multiCommand.runPytestWithSnapshotFixedAndFocusTerminal",
+            "sequence": [
+                // "workbench.action.terminal.focus",
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": {
+                        "text": "cd ${workspaceFolder} && uv run pytest ${file} -s --inline-snapshot=fix\n"
+                    }
+                }
+            ]
+        }
+    ],
+    // "ty.logLevel": "debug",
+    // "ty.trace.server": "verbose",
+    // =========================
+    // Jupyter
+    // =========================
+    "jupyter.askForKernelRestart": false,
+    "jupyter.jupyterServerType": "remote",
+    "jupyter.generateSVGPlots": true,
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "interactiveWindow.executeWithShiftEnter": true,
+    // =========================
+    // Code Runner
+    // =========================
+    "code-runner.executorMap": {
+        "haskell": "stack runghc",
+        // "python": "/Users/azad/miniforge3/envs/tf26/bin/python"
+    },
+    "code-runner.fileDirectoryAsCwd": true,
+    "code-runner.languageIdToFileExtensionMap": {
+        "bat": ".bat",
+        "powershell": ".ps1",
+        "typescript": ".ts"
+    },
+    "code-runner.executorMapByGlob": {
+        "pom.xml": "cd $dir && mvn clean package"
+    },
+    "code-runner.ignoreSelection": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.runInTerminal": true,
+    // =========================
+    // Vim
+    // =========================
+    "vim.useSystemClipboard": true,
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "leader",
+                "v"
+            ],
+            "commands": [
+                ":vsplit"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "s"
+            ],
+            "commands": [
+                ":split"
+            ]
+        },
+        // {
+        //     "before": [
+        //         "leader",
+        //         "h"
+        //     ],
+        //     "commands": [
+        //         "workbench.action.focusLeftGroup"
+        //     ]
+        // },
+        // {
+        //     "before": [
+        //         "leader",
+        //         "j"
+        //     ],
+        //     "commands": [
+        //         "workbench.action.focusBelowGroup"
+        //     ]
+        // },
+        // {
+        //     "before": [
+        //         "leader",
+        //         "k"
+        //     ],
+        //     "commands": [
+        //         "workbench.action.focusAboveGroup"
+        //     ]
+        // },
+        // {
+        //     "before": [
+        //         "leader",
+        //         "l"
+        //     ],
+        //     "commands": [
+        //         "workbench.action.focusRightGroup"
+        //     ]
+        // },
+        {
+            "before": [
+                "leader",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": [
+                "<C-d>"
+            ],
+            "after": [
+                "<C-d>",
+                "z",
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "<C-u>"
+            ],
+            "after": [
+                "<C-u>",
+                "z",
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "n"
+            ],
+            "after": [
+                "n",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "N"
+            ],
+            "after": [
+                "N",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "y",
+                "$"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "J"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "p"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d",
+                "P"
+            ]
+        }
+    ],
+    "vim.easymotion": true,
+    "vim.foldfix": true,
+    "vim.highlightedyank.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/bin/im-select",
+    "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
+    // =========================
+    // Language Specific
+    // =========================
+    "[python]": {
+        "editor.formatOnType": false,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "diffEditor.ignoreTrimWhitespace": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        }
+    },
+    "[jupyter]": {
+        "astral-sh.ty.enable": false
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "[imandra]": {
+        "editor.tabSize": 2
+    },
+    "[iml]": {
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "[haskell]": {
+        // "editor.defaultFormatter": "haskell.haskell"
+    },
+    "[imandrax]": {
+        "editor.defaultFormatter": "Imandra.imandrax"
+    },
+    "[ml]": {
+        "editor.tabSize": 2
+    }
+    // =========================
+    // Extensions & Tools
+    // =========================
+    "tabnine.experimentalAutoImports": true,
+    "sourcery.codeLens": false,
+    "update.showReleaseNotes": false,
+    "redhat.telemetry.enabled": false,
+    "RainbowBrackets.depreciation-notice": false,
+    "cursor.cpp.disabledLanguages": [
+        "lua"
+    ],
+    "cursor.cpp.enablePartialAccepts": true,
+    "cursor.diffs.useCharacterLevelDiffs": true,
+    "explorer.autoOpenDroppedFile": false,
+    // =========================
+    // Miscellaneous
+    // =========================
+    "security.workspace.trust.untrustedFiles": "open",
+    "debug.inlineValues": "on",
+    "makefile.configureOnOpen": true,
+    "sqltools.useNodeRuntime": true,
+    "cSpell.enabledLanguageIds": [
+        "markdown",
+        "plaintext"
+    ],
+    "notebook.lineNumbers": "on",
+    "dsUtils.pairedNotebooks": ";/Users/linhongyu/Documents/playground/London-rental-map/tt.ipynb;/Users/linhongyu/Documents/playground/autopilot/autopilot/regime_estimator/regime_estimator_nn/regime_estimator_nn.ipynb;/Users/linhongyu/Documents/playground/autopilot/notebooks/flow_research/06_estimate_lobgan.ipynb;/Users/linhongyu/Documents/playground/autopilot/notebooks/flow_research/06_estimate_lobgan_fixed.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/data/cotran_train_test_split.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/fdb/db/raw_json_to_json.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/fdb/fdb_schema.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/fdb/json/embed.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/fdb/make_iml_prelude_json.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/fdb/sql/json_to_db.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/fdb/table/embed.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/agents/general/graph.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/agents/general/mono.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/fdb_data/imandrax_prelude/json/make_iml_func_json.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/fdb_data/imandrax_prelude/json/tt.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/fdb_data/table/embed.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/imx.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/script_auto_label.ipynb;/Users/linhongyu/Documents/playground/autospec-iml/src/autospec_iml/script_stats.ipynb;/Users/linhongyu/Documents/playground/cogito/cogito/agent/mono.ipynb;/Users/linhongyu/Documents/playground/cogito/src/agents/code_logician/refiner/mono.ipynb;/Users/linhongyu/Documents/playground/cogito/src/cogito/agent/cogito.ipynb;/Users/linhongyu/Documents/playground/cogito/src/cogito/agent/reasoner_invoker/data/script_embed.ipynb;/Users/linhongyu/Documents/playground/cogito/src/cogito/agent/reasoner_invoker/test_reasoner_invoker.ipynb;/Users/linhongyu/Documents/playground/cogito/tests/agents/test_classifier.ipynb;/Users/linhongyu/Documents/playground/cogito/tests/agents/test_code_logician_gen.ipynb;/Users/linhongyu/Documents/playground/cogito/tests/agents/test_code_logician_py.ipynb;/Users/linhongyu/Documents/playground/cogito/tests/agents/test_iml_checker.ipynb;/Users/linhongyu/Documents/playground/cogito/tests/node/test_decomp.ipynb;/Users/linhongyu/Documents/playground/cogito/tests/test_draw_graph.ipynb;/Users/linhongyu/Documents/playground/cogito/tests/test_reasoner_invoker.ipynb;/Users/linhongyu/Documents/playground/estimator/estimate/env.ipynb;/Users/linhongyu/Documents/playground/estimator/measurement_evaluation.ipynb;/Users/linhongyu/Documents/playground/estimator/regime_estimator/order_book_utils/book_shape.ipynb;/Users/linhongyu/Documents/playground/estimator/regime_estimator/particle_filter/stateestimator.ipynb;/Users/linhongyu/Documents/playground/estimator/research_notebook/00_zk_poisson_config.ipynb;/Users/linhongyu/Documents/playground/estimator/research_notebook/01_evaluate_zk_poisson.ipynb;/Users/linhongyu/Documents/playground/estimator/research_notebook/02_recalibrate_observation_volatility.ipynb;/Users/linhongyu/Documents/playground/estimator/research_notebook/03_zk_poisson_agent.ipynb;/Users/linhongyu/Documents/playground/estimator/research_notebook/04_env_wrapper.ipynb;/Users/linhongyu/Documents/playground/estimator/research_notebook/05_integrate_LOBGAN.ipynb;/Users/linhongyu/Documents/playground/estimator/research_notebook/05_lobgan_flow.ipynb;/Users/linhongyu/Documents/playground/formalismdb/migrations/V2025_05_22_13_03__py_script_insert_data_for_opaque_tables/insert_from_json.ipynb;/Users/linhongyu/Documents/playground/formalismdb/migrations/V2025_05_22_13_23__multi_language_data/gather_data_and_embed.ipynb;/Users/linhongyu/Documents/playground/formalismdb/migrations/V2025_05_22_13_23__multi_language_data/insert_data.ipynb;/Users/linhongyu/Documents/playground/formalismdb/milvus.ipynb;/Users/linhongyu/Documents/playground/formalismdb/src/formalismdb/sync/sync.ipynb;/Users/linhongyu/Documents/playground/iml-playground/repro.ipynb;/Users/linhongyu/Documents/playground/iu-agents/cl_new_cl.ipynb;/Users/linhongyu/Documents/playground/iu-agents/cl_remote.ipynb;/Users/linhongyu/Documents/playground/iu-agents/expr-test.ipynb;/Users/linhongyu/Documents/playground/iu-agents/test_python_api.ipynb;/Users/linhongyu/Documents/playground/iu-agents/tests/agents/code_logician/test_code_logician.ipynb;/Users/linhongyu/Documents/playground/iu-prod-test/src/iu_prod_test/tt.ipynb;/Users/linhongyu/Documents/playground/lobgan/data/WSELOB-2017/trade_data.ipynb;/Users/linhongyu/Documents/playground/lobgan/data/WSELOB-2017/wselob_cleansing.ipynb;/Users/linhongyu/Documents/playground/lobgan/data/WSELOB-2017/wselob_cleansing_sp.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/data/align_feature_msg.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/dataset/differentiable_venue.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/dataset/fit_transformer.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/dataset/pp.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/modeling/TimeGAN.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/modeling/_train.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/modeling/networks.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/modeling/train_CTimeGAN.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/modeling/train_gan.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/orderbook/orderbook.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/regime_estimator/filtering.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/regime_estimator/re_v0.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/regime_estimator/train_gan.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/regime_estimator/train_re.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/sampling/sampling.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/translation/map.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/translation/sim.ipynb;/Users/linhongyu/Documents/playground/lobgan/lobgan/translation/train_gan.ipynb;/Users/linhongyu/Documents/playground/lobgan/notebooks/1.0-TSX_data_parsing.ipynb;/Users/linhongyu/Documents/playground/lobgan/notebooks/1.0-raw-data-processing.ipynb;/Users/linhongyu/Documents/playground/lobgan/pipeline/align_feature_msg.ipynb;/Users/linhongyu/Documents/playground/lobgan/pipeline/p_make_data.ipynb;/Users/linhongyu/Documents/playground/lobgan/pipeline/p_make_dataset.ipynb;/Users/linhongyu/Documents/playground/lobgan/pipeline/preprocess.ipynb;/Users/linhongyu/Documents/playground/lobgan/pipeline/train.ipynb;/Users/linhongyu/Documents/playground/rental_map/rent.ipynb;/Users/linhongyu/Documents/playground/rental_map/tt.ipynb;/Users/linhongyu/Documents/playground/test-langgraph/graph.ipynb;/Users/linhongyu/Dropbox/portavalut/ctfp/ctfp.ipynb;/home/imandra/lobgan/lobgan/dataset/fit_transformer.ipynb;/home/imandra/lobgan/lobgan/modeling/train_gan.ipynb;/home/imandra/lobgan/lobgan/regime_estimator/train_re.ipynb;/home/imandra/lobgan/lobgan/translation/aggregate.ipynb;/home/imandra/lobgan/lobgan/translation/map.ipynb;/home/imandra/lobgan/lobgan/translation/sim.ipynb",
+    "dsUtils.interpreter": "/Users/linhongyu/miniconda3/envs/autopilot/bin/python3.12",
+    // =========================
+    // Linting & Formatting
+    // =========================
+    "flake8.args": [
+        "--config=${workspaceFolder}/.flake8",
+        "--ignore=F722"
+    ],
+    "indentRainbow.indentSetter": {
+        "haskell": 2,
+        "ocaml": 2,
+        "python": 4
+    },
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.excludedLanguages": [
+        "iml",
+        "imandra",
+        "haskell",
+        "plaintext"
+    ],
+    // =========================
+    // Haskell
+    // =========================
+    "haskell.manageHLS": "GHCup",
+    "haskell.hlint.executablePath": "/Users/linhongyu/.local/bin/hlint",
+    "haskell.formattingProvider": "brittany",
+    // =========================
+    // Rust
+    // =========================
+    "rust-analyzer.rustfmt.extraArgs": [
+        "--config",
+        "max_width=77"
+    ],
+    // =========================
+    // ImandraX
+    // =========================
+    "imandrax.lsp.binary": "/Users/linhongyu/.local/bin/imandrax-cli",
+    "imandrax.terminal.binary": "/Users/linhongyu/.local/bin/imandrax-cli",
+    "imandrax.lsp.arguments": [
+        "lsp",
+        "-j 8",
+    ],
+    "cursorpyright.analysis.typeCheckingMode": "off",
+    "editor.accessibilitySupport": "off",
+    "rust-analyzer.runnables.askBeforeUpdateTest": false,
+}
