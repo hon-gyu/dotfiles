@@ -18,7 +18,6 @@
     "editor.tabSize": 4,
     "editor.indentSize": "tabSize",
     "editor.largeFileOptimizations": false,
-    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace, CommitMono",
     "editor.formatOnType": false,
     "editor.detectIndentation": false,
@@ -51,7 +50,6 @@
     // =========================
     "files.associations": {
         "*.ipynb": "jupyter",
-        "*.iml": "imandra"
     },
     "problems.exclude": {
         "**/node_modules/**": true,
@@ -311,6 +309,12 @@
             "source.fixAll": "explicit"
         }
     },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[jupyter]": {
         "astral-sh.ty.enable": false
     },
@@ -341,7 +345,7 @@
     },
     "[ml]": {
         "editor.tabSize": 2
-    }
+    },
     // =========================
     // Extensions & Tools
     // =========================
@@ -411,7 +415,11 @@
         "lsp",
         "-j 8",
     ],
-    "cursorpyright.analysis.typeCheckingMode": "off",
     "editor.accessibilitySupport": "off",
     "rust-analyzer.runnables.askBeforeUpdateTest": false,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "cursorpyright.analysis.typeCheckingMode": "basic",
 }

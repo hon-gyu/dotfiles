@@ -18,8 +18,7 @@
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,
-    "highlight_on_yank_duration": 200,
-    "cursor_blink": false
+    "highlight_on_yank_duration": 200
   },
   "ui_font_size": 16,
   "buffer_font_size": 16,
@@ -46,5 +45,11 @@
         }
       ]
     }
-  }
+  },
+  "terminal": {
+    "line_height": "standard",
+    "font_size": 13,
+    "font_family": "Hack Nerd Font Mono"
+  },
+  "extend_comment_on_newline": false
 }

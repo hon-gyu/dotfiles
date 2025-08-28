@@ -16,13 +16,14 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-`": "terminal_panel::ToggleFocus"
+      "ctrl-`": "terminal_panel::ToggleFocus"
     }
   },
   {
     "context": "Terminal",
     "bindings": {
-      "cmd-`": "workspace::ToggleBottomDock"
+      "ctrl-`": "workspace::ToggleBottomDock",
+      "ctrl-k": "workspace::ActivatePaneUp"
     }
   },
   {
@@ -89,6 +90,26 @@
       "ctrl-l": "workspace::ActivatePaneRight"
     }
   },
+  {
+    "context": "menu",
+    "bindings": {
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+  // Move buffer to pane
+  {
+    "context": "VimControl && !(vim_mode == insert) && Editor",
+    "bindings": {
+      "ctrl-w shift-h": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left", "focus": true, "clone": false }
+      ],
+      "ctrl-w shift-l": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right", "focus": true, "clone": false }
+      ]
+    }
+  },
   // space space to open file finder
   {
     "context": "VimControl && !(vim_mode == insert)",
@@ -147,7 +168,7 @@
     "bindings": {
       "space b b": "pane::ActivatePreviousItem",
       "space b d": "pane::CloseActiveItem",
-      "space b o": "pane::CloseInactiveItems",
+      "space b o": "pane::CloseOtherItems",
       "space b p": "pane::TogglePinTab",
       "space b shift-p": "pane::CloseCleanItems"
     }
@@ -209,6 +230,17 @@
       // Put key bindings here (in addition to the context above) if you want them to
       // work when no editor exists.
       // "space f": "file_finder::Toggle"
+    }
+  },
+  // REPL
+  {
+    "context": "Editor && jupyter && !ContextEditor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "shift-enter": "repl::Run",
+      "cmd-enter": "repl::RunInPlace",
+      "cmd-n cmd-i": "repl::Interrupt",
+      "cmd-n cmd-r": "repl::Restart"
     }
   }
 ]

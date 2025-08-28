@@ -59,7 +59,7 @@
     },
     // ===== Terminal Related =====
     {
-        "key": "ctrl+k",
+        "key": "ctrl+shift+k",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
     },
@@ -163,6 +163,14 @@
         "when": "editorlangid == 'rust' || resourceExtname == .rs"
     },
     {
+        "key": "ctrl+shift+r",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "cd ${workspaceFolder} && uv run ${file}\n"
+        },
+        "when": "resourceExtname == .py"
+    },
+    {
         "key": "ctrl+shift+n",
         "command": "multiCommand.runPytestAndFocusTerminal",
         // "command": "workbench.action.terminal.sendSequence",
@@ -258,6 +266,7 @@
         // "when": "editorTextFocus && vim.mode != 'Insert'"
         "when": "!listFocus && notebookEditorFocused && !notebookCellEditorFocused || editorTextFocus && vim.mode != 'Insert' && vim.mode != 'SearchInProgressMode' && !cursorAtInlineEdit"
     },
+    // ===== Navigation =====
     // Buffer/Tab navigation with shift + hjkl
     {
         "key": "shift+h",
@@ -290,15 +299,26 @@
         "command": "workbench.action.focusBelowGroup",
         "when": "vim.mode != 'Insert'"
     },
-    {
-        "key": "ctrl+k",
-        "command": "workbench.action.focusAboveGroup",
-        "when": "vim.mode != 'Insert'"
-    },
+    // {
+    //     "key": "ctrl+k",
+    //     "command": "workbench.action.focusAboveGroup",
+    //     "when": "vim.mode != 'Insert'"
+    // },
     {
         "key": "ctrl+l",
         "command": "workbench.action.focusRightGroup",
         "when": "vim.mode != 'Insert'"
+    },
+    // Move pane
+    {
+        "key": "ctrl+w shift+h",
+        "command": "workbench.action.moveEditorToLeftGroup",
+        "when": "vim.mode != 'Insert' && !terminalFocus"
+    },
+    {
+        "key": "ctrl+w shift+l",
+        "command": "workbench.action.moveEditorToRightGroup",
+        "when": "vim.mode != 'Insert' && !terminalFocus"
     },
     // File finder with space space
     {
@@ -431,9 +451,25 @@
         "command": "editor.action.inlineSuggest.acceptNextWord",
         "when": "cppSuggestion && !editorReadonly || inlineSuggestionVisible && !editorReadonly"
     },
+    // ====== Unbind =======
     {
         "key": "cmd+right",
         "command": "-editor.action.inlineSuggest.acceptNextWord",
         "when": "cppSuggestion && !editorReadonly || inlineSuggestionVisible && !editorReadonly"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-deleteAllRight",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-quickInput.previous",
+        "when": "inQuickInput && quickInputType == 'quickPick'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-extension.vim_ctrl+k",
+        "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
     }
 ]
