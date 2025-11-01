@@ -226,3 +226,14 @@ shift-down = ['volume set 0', 'mode main']
 # [[on-window-detected]]
 # if.app-id = 'com.mozilla.firefox'
 # run = 'move-node-to-workspace B'
+
+# Ghostty tabs may render as separate windows in macOS tiling window managers such as Yabai or Aerospace.
+# See: https://ghostty.org/docs/help/macos-tiling-wms
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = ["layout floating"]
+
+
+[[on-window-detected]]
+if.app-id = "com.depthpicture.PixPin"
+run = ["layout floating"]

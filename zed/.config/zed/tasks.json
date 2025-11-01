@@ -8,8 +8,81 @@
     "args": [],
     "env": {},
     "use_new_terminal": true,
-    "allow_concurrent_runs": false
+    "allow_concurrent_runs": false,
+    "shell": {
+      "program": "dash"
+    }
   },
+  // <Rust>
+  {
+    "label": "cargo insta lib test - accept",
+    "command": "cargo insta test --accept --lib -- $ZED_STEM",
+    "tags": ["rust", "test", "snapshot-testing"],
+    "reveal": "never",
+    "hide": "on_success"
+  },
+  {
+    "label": "cargo insta lib test - review",
+    "command": "cargo insta test --review --lib -- $ZED_STEM",
+    "tags": ["rust", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash"
+    }
+  },
+  // <Rust/>
+  // <OCaml>
+  {
+    "label": "dune build",
+    "command": "dune build $ZED_RELATIVE_DIR",
+    "tags": ["ocaml", "compile"],
+    // "use_new_terminal": true,
+    "reveal": "no_focus",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash"
+    }
+  },
+  {
+    "label": "dune exec",
+    "command": "dune exec $ZED_RELATIVE_DIR/$ZED_STEM.exe",
+    "tags": ["ocaml", "run-code"],
+    // "use_new_terminal": true,
+    "shell": {
+      "program": "dash"
+    }
+  },
+  {
+    "label": "dune runtest",
+    "command": "dune runtest $ZED_RELATIVE_DIR",
+    "tags": ["ocaml", "test"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash"
+    }
+  },
+  {
+    "label": "dune promote",
+    "command": "dune promote $ZED_RELATIVE_DIR/$ZED_FILENAME",
+    "tags": ["ocaml", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash"
+    }
+  },
+  {
+    "label": "dune runtest --auto-promote",
+    "command": "dune runtest --auto-promote $ZED_RELATIVE_DIR",
+    "tags": ["ocaml", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "reveal": "no_focus",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash"
+    }
+  },
+  // <OCaml/>
+  // Template
   {
     "label": "Example task",
     "command": "for i in {1..5}; do echo \"Hello $i/5\"; sleep 1; done",

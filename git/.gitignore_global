@@ -1,3 +1,5 @@
 .DS_Store
 .history/
-*.local*
+*local*
+*local
+.beads/

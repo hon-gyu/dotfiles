@@ -32,13 +32,23 @@
       "cmd-~": "workspace::NewTerminal"
     }
   },
+  // Surround around selection
+  // https://github.com/zed-industries/zed/issues/26370
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      // Zed shows warning for this but it's actually correct
+      "shift-s": ["vim::PushAddSurrounds", {}]
+    }
+  },
+
   // <LazyVim>
   // Use space-e to toggle project panel
   {
     "context": "VimControl && !menu",
     "bindings": {
       // After showing the project panel, it will automatically be focused.
-      "space e": "workspace::ToggleLeftDock"
+      "space e": "pane::RevealInProjectPanel"
     }
   },
   {
@@ -56,7 +66,9 @@
       "d": "project_panel::Delete",
       "l": "project_panel::ExpandSelectedEntry",
       "y": "project_panel::Copy",
+      "x": "project_panel::Cut",
       "p": "project_panel::Paste",
+      "o": "workspace::OpenWithSystem",
       "r": "project_panel::Rename"
     }
   },
@@ -210,7 +222,8 @@
       "space c a": "editor::ToggleCodeActions"
     }
   },
-  // </LazyVim>
+  // <LazyVim />
+
   //
   {
     "context": "vim_mode == normal && !menu",
@@ -242,5 +255,65 @@
       "cmd-n cmd-i": "repl::Interrupt",
       "cmd-n cmd-r": "repl::Restart"
     }
+  },
+  // AI
+  {
+    // cf: https://github.com/zed-industries/zed/issues/25406#issuecomment-2676868030
+    "context": "Editor && edit_prediction_conflict",
+    "bindings": { "tab": "editor::AcceptEditPrediction" }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": { "ctrl-y": "editor::AcceptPartialEditPrediction" }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-i": "editor::Tab"
+    }
+  },
+  // Inline snapshot test
+  // <Rust>
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == rs",
+    "bindings": {
+      "ctrl-shift-a": [
+        "task::Spawn",
+        { "task_name": "cargo insta lib test - accept" }
+      ]
+    }
+  },
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == rs",
+    "bindings": {
+      "ctrl-shift-r": [
+        "task::Spawn",
+        { "task_name": "cargo insta lib test - review" }
+      ]
+    }
+  },
+  // <Rust/>
+  // <Ocaml>
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == ml",
+    "bindings": {
+      "ctrl-shift-a": [
+        "task::Spawn",
+        { "task_name": "dune runtest --auto-promote" }
+      ]
+    }
+  },
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == ml",
+    "bindings": {
+      "ctrl-shift-r": ["task::Spawn", { "task_name": "dune runtest" }]
+    }
+  },
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == ml",
+    "bindings": {
+      "ctrl-shift-c": ["task::Spawn", { "task_name": "dune build" }]
+    }
   }
+  // <Ocaml/>
 ]

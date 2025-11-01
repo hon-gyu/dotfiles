@@ -5,59 +5,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Escape to Caps Lock (but not from Caps Lock tap)",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock_pressed",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Tap Caps Lock for ESC or Hold for Control",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "caps_lock_pressed",
-                                            "value": 1
-                                        }
-                                    },
-                                    {
-                                        "key_code": "left_control",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_after_key_up": [
-                                    {
-                                        "set_variable": {
-                                            "name": "caps_lock_pressed",
-                                            "value": 0
-                                        }
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Disable dead key behavior for Option+Backtick",
                         "manipulators": [
                             {
@@ -122,6 +69,25 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Tap Caps Lock for ESC or Hold for Control",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -139,6 +105,10 @@
             "name": "Default profile",
             "selected": true,
             "simple_modifications": [
+                {
+                    "from": { "key_code": "escape" },
+                    "to": [{ "key_code": "caps_lock" }]
+                },
                 {
                     "from": { "key_code": "f4" },
                     "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]

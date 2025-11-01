@@ -192,17 +192,6 @@
         "when": "resourceExtname == .py"
     },
     // ===== LazyVim =====
-    // Use space-e to toggle project panel
-    {
-        "key": "space e",
-        "command": "workbench.view.explorer",
-        "when": "vim.mode == 'Normal' && !inQuickOpen && !terminalFocus"
-    },
-    {
-        "key": "space e",
-        "command": "workbench.action.toggleSidebarVisibility",
-        "when": "explorerViewletVisible && vim.mode != 'Insert' && !inputFocus && !inQuickOpen && !terminalFocus"
-    },
     // File Explorer operations
     {
         "key": "ctrl+l",
@@ -320,6 +309,17 @@
         "command": "workbench.action.moveEditorToRightGroup",
         "when": "vim.mode != 'Insert' && !terminalFocus"
     },
+    // Use space-e to toggle project panel
+    {
+        "key": "space e",
+        "command": "workbench.view.explorer",
+        "when": "vim.mode == 'Normal' && editorFocus && !inQuickOpen && !terminalFocus"
+    },
+    {
+        "key": "space e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "explorerViewletVisible && vim.mode != 'Insert' && !inputFocus && !inQuickOpen && !terminalFocus"
+    },
     // File finder with space space
     {
         "key": "space space",
@@ -404,6 +404,11 @@
         "command": "outdent",
         "when": "editorTextFocus && !editorTabMovesFocus"
     },
+    {
+        "key": "ctrl+i",
+        "command": "tab",
+        "when": "vim.mode == 'Insert'"
+    },
     // ===== AI/Composer Related =====
     {
         "key": "cmd+k",
@@ -443,10 +448,6 @@
         "when": "isCompositeNotebook && !notebookCellListFocused && activeEditor == 'workbench.editor.repl'"
     },
     {
-        "key": "cmd+e",
-        "command": "composerMode.background"
-    },
-    {
         "key": "ctrl+y",
         "command": "editor.action.inlineSuggest.acceptNextWord",
         "when": "cppSuggestion && !editorReadonly || inlineSuggestionVisible && !editorReadonly"
@@ -471,5 +472,16 @@
         "key": "ctrl+k",
         "command": "-extension.vim_ctrl+k",
         "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
+    },
+    // ==========
+    {
+        "key": "shift+escape",
+        "command": "workbench.action.toggleMaximizeEditorGroup",
+        "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+    },
+    {
+        "key": "cmd+r cmd+m",
+        "command": "-workbench.action.toggleMaximizeEditorGroup",
+        "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
     }
 ]

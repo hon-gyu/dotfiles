@@ -7,9 +7,27 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent": {
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
+    },
+    "model_parameters": []
+  },
+  "show_edit_predictions": true,
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null,
+      "enterprise_uri": null
+    },
+    "enabled_in_text_threads": false
+  },
   "base_keymap": "Cursor",
   "features": {
-    "edit_prediction_provider": "zed"
+    // "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "supermaven"
   },
   "telemetry": {
     "metrics": false,
@@ -20,36 +38,105 @@
     "toggle_relative_line_numbers": true,
     "highlight_on_yank_duration": 200
   },
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "ui_font_size": 17,
+  "buffer_font_size": 13,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "VSCode Dark Modern"
   },
+  "icon_theme": "JetBrains New UI Icons (Light)",
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "inlay_hints": { "enabled": true },
+  "language_servers": ["!codebook", "..."],
   "languages": {
+    "Julia": {
+      "show_edit_predictions": true
+    },
     "Python": {
-      "language_servers": ["ruff", "ty"],
+      "language_servers": ["pyright", "ruff", "ty", "!codebook"],
       "format_on_save": "on",
       "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
-          }
-        },
+        { "code_action": "source.organizeImports.ruff" },
+        { "code_action": "source.fixAll.ruff" },
         {
           "language_server": {
             "name": "ruff"
           }
         }
       ]
+    },
+    "Rust": {
+      "language_servers": ["rust-analyzer", "!codebook", "..."]
+    },
+    "OCaml": {
+      "language_servers": ["ocaml-lsp", "..."]
+    },
+    "Markdown": {
+      "language_servers": ["markdown-oxide", "!codebook", "..."],
+      "tab_size": 4
+    },
+    "TOML": {
+      "language_servers": ["taplo", "!codebook", "..."],
+      "formatter": "auto",
+      "format_on_save": "on"
+    },
+    "Lean 4": {
+      "format_on_save": "on"
+    },
+    "TypeScript": {
+      "language_servers": ["!typescript-language-server", "vtsls", "..."],
+      "format_on_save": "on",
+      "prettier": { "allowed": true }
+    },
+    "TSX": {
+      "language_servers": ["!typescript-language-server", "vtsls", "..."],
+      "format_on_save": "on",
+      "prettier": { "allowed": true }
+    },
+    "JavaScript": {
+      "language_servers": ["!typescript-language-server", "vtsls", "..."],
+      "format_on_save": "on",
+      "prettier": { "allowed": true }
+    }
+  },
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          // "diagnosticMode": "workspace",  // default is "openFilesOnly"
+          "typeCheckingMode": "strict",
+          "diagnosticSeverityOverides": {
+            "reportMissingTypeStubs": false,
+            "reportRedeclaration": false
+          }
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    },
+    "ocaml-lsp": {
+      "initialization_options": {
+        "inlayHints": {
+          "typeHints": {
+            "enable": true
+          }
+        }
+      }
     }
   },
   "terminal": {
     "line_height": "standard",
-    "font_size": 13,
+    "font_size": 14,
     "font_family": "Hack Nerd Font Mono"
   },
-  "extend_comment_on_newline": false
+  "extend_comment_on_newline": false,
+  "file_types": {
+    "OCaml": ["iml"]
+  }
 }
