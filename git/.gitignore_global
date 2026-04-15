@@ -3,3 +3,8 @@
 *local*
 *local
 .beads/
+.zed/
+.issues/
+dev-tools.locks/
+.env
+tmp/

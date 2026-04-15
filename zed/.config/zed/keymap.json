@@ -10,27 +10,27 @@
     "context": "Editor",
     "bindings": {
       // "j k": ["workspace::SendKeystrokes", "escape"]
-    }
+    },
   },
   // Toggle terminal panel
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-`": "terminal_panel::ToggleFocus"
-    }
+      "ctrl-`": "terminal_panel::ToggleFocus",
+    },
   },
   {
     "context": "Terminal",
     "bindings": {
       "ctrl-`": "workspace::ToggleBottomDock",
-      "ctrl-k": "workspace::ActivatePaneUp"
-    }
+      "ctrl-k": "workspace::ActivatePaneUp",
+    },
   },
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-~": "workspace::NewTerminal"
-    }
+      "cmd-~": "workspace::NewTerminal",
+    },
   },
   // Surround around selection
   // https://github.com/zed-industries/zed/issues/26370
@@ -38,24 +38,45 @@
     "context": "vim_mode == visual",
     "bindings": {
       // Zed shows warning for this but it's actually correct
-      "shift-s": ["vim::PushAddSurrounds", {}]
-    }
+      "shift-s": ["vim::PushAddSurrounds", {}],
+    },
   },
-
+  // <wrapped-line-movement>
+  {
+     "context": "Editor && (vim_mode == normal || vim_mode == visual) && (extension==md || extension==typ || extension==qmd || extension==tex)",
+     "bindings": {
+       "j": ["vim::Down", { "display_lines": true }],
+       "k": ["vim::Up", { "display_lines": true }]
+     }
+   },
+   {
+     "context": "VimCount && Editor && VimControl && !menu",
+     "bindings": {
+       "j": ["vim::Down", { "display_lines": false }],
+       "k": ["vim::Up", { "display_lines": false }]
+     }
+   },
+   // </wrapped-line-movement>
   // <LazyVim>
   // Use space-e to toggle project panel
   {
     "context": "VimControl && !menu",
     "bindings": {
       // After showing the project panel, it will automatically be focused.
-      "space e": "pane::RevealInProjectPanel"
-    }
+      "space e": "pane::RevealInProjectPanel",
+    },
   },
   {
     "context": "ProjectPanel && menu",
     "bindings": {
-      "space e": "workspace::ToggleLeftDock"
-    }
+      "space e": "workspace::ToggleLeftDock",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-b": "workspace::ToggleLeftDock",
+    },
   },
   // LazyVim: File Explorer
   {
@@ -64,28 +85,30 @@
       "q": "workspace::ToggleLeftDock",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
-      "l": "project_panel::ExpandSelectedEntry",
+      // "l": "project_panel::ExpandSelectedEntry",
+      "l": "project_panel::Open",
       "y": "project_panel::Copy",
       "x": "project_panel::Cut",
       "p": "project_panel::Paste",
       "o": "workspace::OpenWithSystem",
-      "r": "project_panel::Rename"
-    }
+      "r": "project_panel::Rename",
+    },
   },
   {
     "context": "ProjectPanel && menu && !editing",
     "bindings": {
       // "l" is defined twice because we want to make expanding take precedence
       "l": "project_panel::Open",
-      "shift-y": "workspace::CopyPath"
-    }
+      "shift-y": "workspace::CopyPath",
+      "shift-cmd-y": "workspace::CopyRelativePath",
+    },
   },
   // LazyVim: Save File
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-s": "workspace::Save"
-    }
+      "ctrl-s": "workspace::Save",
+    },
   },
   // Buffer navigation and split panes navigation
   // with shift/ctrl + hkjl
@@ -99,14 +122,15 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight"
-    }
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
   },
   {
     "context": "menu",
     "bindings": {
-      "ctrl-l": "workspace::ActivatePaneRight"
-    }
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+    },
   },
   // Move buffer to pane
   {
@@ -114,28 +138,28 @@
     "bindings": {
       "ctrl-w shift-h": [
         "workspace::MoveItemToPaneInDirection",
-        { "direction": "left", "focus": true, "clone": false }
+        { "direction": "left", "focus": true, "clone": false },
       ],
       "ctrl-w shift-l": [
         "workspace::MoveItemToPaneInDirection",
-        { "direction": "right", "focus": true, "clone": false }
-      ]
-    }
+        { "direction": "right", "focus": true, "clone": false },
+      ],
+    },
   },
   // space space to open file finder
   {
     "context": "VimControl && !(vim_mode == insert)",
     "bindings": {
-      "space space": "file_finder::Toggle"
-    }
+      "space space": "file_finder::Toggle",
+    },
   },
   // Window split using space + | or space + -
   {
     "context": "VimControl && !menu",
     "bindings": {
       "space |": "pane::SplitRight",
-      "space -": "pane::SplitDown"
-    }
+      "space -": "pane::SplitDown",
+    },
   },
   // Add comment below and above
   {
@@ -145,16 +169,16 @@
       "g c o": ["workspace::SendKeystrokes", "o escape g c c shift-a"],
       "g c shift-o": [
         "workspace::SendKeystrokes",
-        "shift-o escape g c c shift-a"
-      ]
-    }
+        "shift-o escape g c c shift-a",
+      ],
+    },
   },
   // LSP
   {
     "context": "VimControl && !(vim_mode == insert)",
     "bindings": {
-      "shift-k": "editor::Hover"
-    }
+      "shift-k": "editor::Hover",
+    },
   },
   // Git
   {
@@ -162,17 +186,17 @@
     "bindings": {
       "space g g": [
         "task::Spawn",
-        { "task_name": "LazyGit", "reveal_target": "center" }
-      ]
-    }
+        { "task_name": "LazyGit", "reveal_target": "center" },
+      ],
+    },
   },
   // Navigate quickfix / diagnostic / error / warning
   {
     "context": "VimControl && !menu",
     "bindings": {
       "[ q": "editor::GoToPreviousDiagnostic",
-      "] q": "editor::GoToDiagnostic"
-    }
+      "] q": "editor::GoToDiagnostic",
+    },
   },
   // Buffer related: space + b
   {
@@ -182,60 +206,79 @@
       "space b d": "pane::CloseActiveItem",
       "space b o": "pane::CloseOtherItems",
       "space b p": "pane::TogglePinTab",
-      "space b shift-p": "pane::CloseCleanItems"
-    }
+      "space b shift-p": "pane::CloseCleanItems",
+    },
   },
   // Search related: space + s
   {
     "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
     "bindings": {
-      "space s s": "outline::Toggle"
-    }
+      "space s s": "outline::Toggle",
+    },
   },
   // File/Find related: space + f
   {
     "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
     "bindings": {
       "space f f": "file_finder::Toggle",
-      "space f n": "workspace::NewFile"
-    }
+      "space f n": "workspace::NewFile",
+    },
   },
   {
     "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
     "bindings": {
-      "space f f": "outline::Toggle"
-    }
+      "space f f": "outline::Toggle",
+    },
   },
   // Window related: space + w
   {
     "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
     "bindings": {
       // "space w d": "pane::CloseSplit"
-    }
+    },
   },
   // Code related: space + c
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "space c f": "editor::Format",
       "space c r": "editor::Rename",
-      "space c a": "editor::ToggleCodeActions"
-    }
+      "space c a": "editor::ToggleCodeActions",
+    },
   },
-  // <LazyVim />
-
+  // format (when not in visual mode)
+  {
+    "context": "VimControl && !(vim_mode == insert) && !(vim_mode == visual)",
+    "bindings": {
+      "space c f": "editor::Format",
+    },
+  },
+  // format selection (when in visual mode)
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "space c f": "editor::FormatSelections",
+    },
+  },
+  // </LazyVim>
+  // Multi-cursor
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-i": "editor::SplitSelectionIntoLines",
+    },
+  },
   //
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
-      "shift-y": ["workspace::SendKeystrokes", "y $"] // Use neovim's yank behavior: yank to end of line.
-    }
+      "shift-y": ["workspace::SendKeystrokes", "y $"], // Use neovim's yank behavior: yank to end of line.
+    },
   },
   {
     "context": "vim_mode == insert",
     "bindings": {
       // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
-    }
+    },
   },
   {
     "context": "EmptyPane || SharedScreen",
@@ -243,7 +286,7 @@
       // Put key bindings here (in addition to the context above) if you want them to
       // work when no editor exists.
       // "space f": "file_finder::Toggle"
-    }
+    },
   },
   // REPL
   {
@@ -253,67 +296,131 @@
       "shift-enter": "repl::Run",
       "cmd-enter": "repl::RunInPlace",
       "cmd-n cmd-i": "repl::Interrupt",
-      "cmd-n cmd-r": "repl::Restart"
-    }
+      "cmd-n cmd-r": "repl::Restart",
+    },
   },
   // AI
   {
     // cf: https://github.com/zed-industries/zed/issues/25406#issuecomment-2676868030
-    "context": "Editor && edit_prediction_conflict",
-    "bindings": { "tab": "editor::AcceptEditPrediction" }
+    "context": "Editor && (edit_prediction && (showing_completions || in_leading_whitespace))",
+    "bindings": { "tab": "editor::AcceptEditPrediction" },
   },
   {
     "context": "Editor && edit_prediction",
-    "bindings": { "ctrl-y": "editor::AcceptPartialEditPrediction" }
+    "bindings": { "ctrl-y": "editor::AcceptNextWordEditPrediction" },
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "ctrl-i": "editor::Tab"
-    }
+      "ctrl-i": "editor::Tab",
+    },
   },
-  // Inline snapshot test
   // <Rust>
   {
     "context": "VimControl && !(vim_mode == insert) && extension == rs",
     "bindings": {
       "ctrl-shift-a": [
         "task::Spawn",
-        { "task_name": "cargo insta lib test - accept" }
-      ]
-    }
+        { "task_name": "cargo insta lib test - accept" },
+      ],
+      "ctrl-shift-r": [
+        "task::Spawn",
+        { "task_name": "cargo insta lib test - review" },
+      ],
+      "ctrl-shift-t": ["task::Spawn", { "task_name": "cargo lib test" }],
+    },
   },
   {
     "context": "VimControl && !(vim_mode == insert) && extension == rs",
     "bindings": {
-      "ctrl-shift-r": [
-        "task::Spawn",
-        { "task_name": "cargo insta lib test - review" }
-      ]
-    }
+    },
   },
-  // <Rust/>
+  // </Rust>
   // <Ocaml>
   {
-    "context": "VimControl && !(vim_mode == insert) && extension == ml",
+    "context": "VimControl && !(vim_mode == insert) && (extension == ml || extension == mli)",
     "bindings": {
       "ctrl-shift-a": [
         "task::Spawn",
-        { "task_name": "dune runtest --auto-promote" }
-      ]
-    }
+        { "task_name": "dune test --auto-promote" },
+      ],
+    },
   },
   {
-    "context": "VimControl && !(vim_mode == insert) && extension == ml",
+    "context": "VimControl && !(vim_mode == insert) && (extension == ml || extension == mli)",
     "bindings": {
-      "ctrl-shift-r": ["task::Spawn", { "task_name": "dune runtest" }]
-    }
+      "ctrl-shift-t": ["task::Spawn", { "task_name": "dune test" }],
+    },
   },
   {
-    "context": "VimControl && !(vim_mode == insert) && extension == ml",
+    "context": "VimControl && !(vim_mode == insert) && (extension == ml || extension == mli)",
     "bindings": {
-      "ctrl-shift-c": ["task::Spawn", { "task_name": "dune build" }]
-    }
-  }
-  // <Ocaml/>
+      "ctrl-shift-c": ["task::Spawn", { "task_name": "dune build" }],
+    },
+  },
+  {
+    "context": "VimControl && !(vim_mode == insert) && (extension == ml || extension == mli || extension == mld)",
+    "bindings": {
+      "ctrl-shift-d": ["task::Spawn", { "task_name": "dune build @doc-private @doc" }],
+    },
+  },
+  // <Dune>
+  {
+    // Dune has no extension, so we enable it for all files
+    "context": "VimControl && !(vim_mode == insert)",
+    "bindings": {
+      "ctrl-shift-c": ["task::Spawn", { "task_name": "dune build" }],
+    },
+  },
+  // </Dune>
+  // </Ocaml>
+  // <TypeScript>
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == ts",
+    "bindings": {
+      "ctrl-shift-a": ["task::Spawn", { "task_name": "vitest run --update" }],
+    },
+  },
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == ts",
+    "bindings": {
+      "ctrl-shift-t": ["task::Spawn", { "task_name": "vitest run" }],
+    },
+  },
+  // </TypeScript>
+  // <Janet>
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == janet",
+    "bindings": {
+      "ctrl-shift-a": ["task::Spawn", { "task_name": "janet promote" }],
+      "ctrl-shift-c": ["task::Spawn", { "task_name": "janet exec" }],
+      "ctrl-shift-n": ["task::Spawn", { "task_name": "janet send exec" }]
+    },
+  },
+  // </Janet>
+  // <Racket>
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == rkt",
+    "bindings": {
+      "ctrl-shift-a": ["task::Spawn", { "task_name": "racket expect-test promote" }],
+      "ctrl-shift-t": ["task::Spawn", { "task_name": "racket expect-test test" }],
+      "ctrl-shift-r": ["task::Spawn", { "task_name": "racket exec" }],
+      "ctrl-shift-n": ["task::Spawn", { "task_name": "racket send exec" }],
+    },
+  },
+  // </Racket>
+  // <Shell>
+  {
+    "context": "VimControl && !(vim_mode == insert) && extension == sh",
+    "bindings": {
+      "ctrl-shift-c": ["task::Spawn", { "task_name": "shell exec" }],
+    },
+  },
+  // </Shell>
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-s": "workspace::SaveWithoutFormat",
+    },
+  },
 ]

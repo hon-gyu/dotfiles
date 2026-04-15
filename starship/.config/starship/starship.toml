@@ -1,0 +1,86 @@
+add_newline = true
+command_timeout = 1000
+
+format = """
+$os\
+$username\
+$directory\
+$git_branch\
+$git_status\
+$ocaml\
+$rust\
+$python\
+$nodejs\
+$cmd_duration\
+$line_break\
+$character"""
+
+[os]
+disabled = true
+style = "bold blue"
+
+[username]
+show_always = false
+style_user = "bold yellow"
+format = "[$user]($style) "
+
+[directory]
+truncation_length = 4
+truncation_symbol = "…/"
+style = "bold cyan"
+read_only = " 󰌾"
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = "⚡"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+modified = "!"
+staged = "+"
+deleted = "✘"
+
+[ocaml]
+# symbol = "🐫 "
+symbol = " "
+style = "bold yellow"
+format = "[$symbol($version)]($style) "
+
+[rust]
+# symbol = "🦀 "
+symbol = " "
+style = "bold red"
+format = "[$symbol($version)]($style) "
+
+[python]
+symbol = " "
+style = "bold green"
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[nodejs]
+symbol = " "
+style = "bold green"
+format = "[$symbol($version)]($style) "
+disabled = true                         # flip to false if you need it
+
+[cmd_duration]
+min_time = 2_000
+format = "took [$duration](bold yellow) "
+show_milliseconds = false
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[shell]
+fish_indicator = " "
+style = "bold cyan"
+disabled = false

@@ -10,78 +10,252 @@
     "use_new_terminal": true,
     "allow_concurrent_runs": false,
     "shell": {
-      "program": "dash"
-    }
+      "program": "dash",
+    },
+  },
+  {
+    "label": "tmux send-keys template",
+    "command": "tmux send-keys -t 'main:0.0' '$ZED_FILE' Enter",
+    "tags": ["tmux"],
+    "hide": "always",
+    "reveal": "never",
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash",
+    },
   },
   // <Rust>
   {
     "label": "cargo insta lib test - accept",
-    "command": "cargo insta test --accept --lib -- $ZED_STEM",
+    // "command": "cargo insta test --accept --lib -- $ZED_STEM",
+    // If stem is "mod", use the parent directory name as the filter
+    "command": "bash -c '[[ \"$ZED_STEM\" == \"mod\" ]] && cargo insta test --accept --lib -- $ZED_RELATIVE_DIR || cargo insta test --accept --lib -- $ZED_STEM'",
     "tags": ["rust", "test", "snapshot-testing"],
-    "reveal": "never",
-    "hide": "on_success"
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
   },
   {
     "label": "cargo insta lib test - review",
-    "command": "cargo insta test --review --lib -- $ZED_STEM",
+    "command": "cargo insta test --review --lib -- $ZED_STEM --show-output",
     "tags": ["rust", "test", "snapshot-testing"],
     "use_new_terminal": true,
     "shell": {
-      "program": "dash"
-    }
+      "program": "dash",
+    },
   },
-  // <Rust/>
+  {
+    "label": "cargo lib test",
+    "command": "cargo test --lib $ZED_STEM",
+    "tags": ["rust", "test"],
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  // </Rust>
   // <OCaml>
   {
     "label": "dune build",
-    "command": "dune build $ZED_RELATIVE_DIR",
+    "command": "eval $(opam env) && dune build $ZED_RELATIVE_DIR",
     "tags": ["ocaml", "compile"],
     // "use_new_terminal": true,
     "reveal": "no_focus",
     "hide": "on_success",
     "shell": {
-      "program": "dash"
-    }
+      "program": "dash",
+    },
   },
   {
     "label": "dune exec",
-    "command": "dune exec $ZED_RELATIVE_DIR/$ZED_STEM.exe",
+    "command": "eval $(opam env) && dune exec $ZED_RELATIVE_DIR/$ZED_STEM.exe",
     "tags": ["ocaml", "run-code"],
     // "use_new_terminal": true,
     "shell": {
-      "program": "dash"
-    }
+      "program": "dash",
+    },
   },
   {
-    "label": "dune runtest",
-    "command": "dune runtest $ZED_RELATIVE_DIR",
+    "label": "dune test",
+    "command": "eval $(opam env) && dune test $ZED_RELATIVE_DIR",
     "tags": ["ocaml", "test"],
-    "use_new_terminal": true,
-    "shell": {
-      "program": "dash"
-    }
-  },
-  {
-    "label": "dune promote",
-    "command": "dune promote $ZED_RELATIVE_DIR/$ZED_FILENAME",
-    "tags": ["ocaml", "test", "snapshot-testing"],
-    "use_new_terminal": true,
-    "shell": {
-      "program": "dash"
-    }
-  },
-  {
-    "label": "dune runtest --auto-promote",
-    "command": "dune runtest --auto-promote $ZED_RELATIVE_DIR",
-    "tags": ["ocaml", "test", "snapshot-testing"],
     "use_new_terminal": true,
     "reveal": "no_focus",
     "hide": "on_success",
     "shell": {
-      "program": "dash"
-    }
+      "program": "dash",
+    },
   },
-  // <OCaml/>
+  {
+    "label": "dune promote",
+    "command": "eval $(opam env) && dune promote $ZED_RELATIVE_DIR/$ZED_FILENAME",
+    "tags": ["ocaml", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "dune test --auto-promote",
+    "command": "eval $(opam env) && dune test --auto-promote $ZED_RELATIVE_DIR",
+    "tags": ["ocaml", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    // "reveal": "no_focus",
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "dune build @doc-private @doc",
+    "command": "eval $(opam env) && dune build @doc-private @doc",
+    "tags": ["ocaml", "doc", "build"],
+    "use_new_terminal": true,
+    // "reveal": "no_focus",
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "dune build @cinaps --auto-promote",
+    "command": "eval $(opam env) && dune build @$ZED_RELATIVE_DIR/cinaps --auto-promote",
+    "tags": ["ocaml", "cinaps"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "format dune file",
+    "command": "dune format $ZED_FILE",
+    // "command": "dune format $ZED_FILE_NAME > $ZED_FILE_NAME.formatted",
+    // "command": "bash -c '[[ \"$ZED_STEM\" == \"dune\" ]] && eval $(opam env) && dune format $ZED_FILE_NAME > $ZED_FILE_NAME.formatted'",
+    "tags": ["ocaml", "format", "dune"],
+    "use_new_terminal": true,
+    // "reveal": "no_focus",
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  // </OCaml>
+  // <TypeScript>
+  {
+    "label": "vitest run",
+    "command": "cd $ZED_RELATIVE_DIR && pnpm exec vitest run $ZED_FILENAME",
+    "tags": ["typescript", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "reveal": "always",
+    // "reveal": "always",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "vitest run --update",
+    "command": "cd $ZED_RELATIVE_DIR && pnpm exec vitest run --update $ZED_FILENAME",
+    "tags": ["typescript", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "reveal": "never",
+    // "reveal": "always",
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  // </TypeScript>
+  // <Janet>
+  {
+    "label": "janet exec",
+    "command": "janet $ZED_FILE",
+    "tags": ["janet", "exec"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "janet send exec",
+    "command": "tmux send-keys -t '6:2.1' 'janet $ZED_FILE' Enter" ,
+    "tags": ["janet", "exec"],
+    "use_new_terminal": true,
+    "hide": "always",
+    "reveal": "never",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "janet promote",
+    "command": "judge --accept $ZED_FILE",
+    "tags": ["janet", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  // </Janet>
+  // <Racket>
+  {
+    "label": "racket exec",
+    "command": "racket $ZED_FILE",
+    "tags": ["racket", "exec"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "racket send exec",
+    "command": "tmux send-keys -t '5:1.0' 'racket $ZED_FILE' Enter" ,
+    "tags": ["racket", "exec"],
+    "use_new_terminal": true,
+    "hide": "always",
+    "reveal": "never",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "racket expect-test promote",
+    "command": "raco judge --accept $ZED_FILE",
+    "tags": ["racket", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  {
+    "label": "racket expect-test test",
+    "command": "raco judge $ZED_FILE",
+    "tags": ["racket", "test", "snapshot-testing"],
+    "use_new_terminal": true,
+    "hide": "on_success",
+    "shell": {
+      "program": "dash",
+    },
+  },
+  // </Racket>
+  // <Shell>
+  {
+    "label": "shell exec",
+    "command": "$ZED_FILE",
+    "tags": ["shell", "exec"],
+    "use_new_terminal": true,
+    "shell": {
+      "program": "dash",
+    },
+  },
+  // </Shell>
   // Template
   {
     "label": "Example task",
@@ -126,6 +300,6 @@
     //     }
     "shell": "system",
     // Represents the tags for inline runnable indicators, or spawning multiple tasks at once.
-    "tags": []
-  }
+    // "tags": [],
+  },
 ]

@@ -7,101 +7,182 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  // <experimental>
+  // "border_size": 0.1,
+  "bottom_dock_layout": "full",
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+  },
+  "line_indicator_format": "long",
+  "indent_guides": {
+    "coloring":"indent_aware",
+    // "background_coloring": "indent_aware",
+  },
+  "scroll_sensitivity": 1.5,
+  "show_whitespaces":"all",
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_menus": true,
+  },
+  "project_panel": {
+    "entry_spacing": "standard",
+    // "bold_folder_labels": true,
+    "indent_guides": {
+      "show": "never"
+    },
+    "indent_size": 20,
+    "sort_mode":"mixed",
+  },
+  "go_to_definition_fallback":"none",
+  // </experimental>
+  "which_key": {
+    "enabled": true,
+  },
+  "colorize_brackets": true,
   "agent": {
     "default_model": {
       "provider": "anthropic",
-      "model": "claude-sonnet-4-5-latest"
+      "model": "claude-sonnet-4-5-latest",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "show_edit_predictions": true,
   "edit_predictions": {
+    // "provider": "zed",
+    // "provider": "supermaven",
+    "provider": "zed",
+    "disabled_globs": ["**/imandrax/*"],
     "mode": "eager",
     "copilot": {
       "proxy": null,
       "proxy_no_verify": null,
-      "enterprise_uri": null
+      "enterprise_uri": null,
     },
-    "enabled_in_text_threads": false
+    "enabled_in_text_threads": false,
   },
   "base_keymap": "Cursor",
-  "features": {
-    // "edit_prediction_provider": "zed"
-    "edit_prediction_provider": "supermaven"
-  },
   "telemetry": {
     "metrics": false,
-    "diagnostics": false
+    "diagnostics": false,
   },
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,
-    "highlight_on_yank_duration": 200
+    "highlight_on_yank_duration": 200,
   },
   "ui_font_size": 17,
   "buffer_font_size": 13,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "VSCode Dark Modern"
+    "dark": "VSCode Dark Modern",
   },
-  "icon_theme": "JetBrains New UI Icons (Light)",
+  "icon_theme": "Material Icon Theme",
   "diagnostics": {
     "inline": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
-  "inlay_hints": { "enabled": true },
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true,
+  },
   "language_servers": ["!codebook", "..."],
+  "format_on_save": "off",
   "languages": {
+    "Racket": {
+      "format_on_save": "on"
+    },
     "Julia": {
-      "show_edit_predictions": true
+      "show_edit_predictions": true,
     },
     "Python": {
       "language_servers": ["pyright", "ruff", "ty", "!codebook"],
       "format_on_save": "on",
+      "extend_comment_on_newline": true,
       "formatter": [
         { "code_action": "source.organizeImports.ruff" },
         { "code_action": "source.fixAll.ruff" },
         {
           "language_server": {
-            "name": "ruff"
-          }
-        }
-      ]
+            "name": "ruff",
+          },
+        },
+      ],
     },
     "Rust": {
-      "language_servers": ["rust-analyzer", "!codebook", "..."]
+      "language_servers": ["rust-analyzer", "!codebook", "..."],
+      "extend_comment_on_newline": true,
+      "format_on_save": "on",
     },
     "OCaml": {
-      "language_servers": ["ocaml-lsp", "..."]
+      "language_servers": ["ocaml-lsp", "..."],
+      "format_on_save": "off",
+    },
+    "Dune": {
+      "format_on_save": "on",
+      "colorize_brackets": true,
+      "language_servers": ["!codebook", "..."],
     },
     "Markdown": {
-      "language_servers": ["markdown-oxide", "!codebook", "..."],
-      "tab_size": 4
+      "format_on_save": "off",
+      "language_servers": ["oyster", "!markdown-oxide", "!codebook", "..."],
+      "tab_size": 2,
     },
     "TOML": {
-      "language_servers": ["taplo", "!codebook", "..."],
+      // "language_servers": ["taplo", "!codebook", "..."],
+      "language_servers": ["!codebook", "..."],
       "formatter": "auto",
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "Lean 4": {
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "TypeScript": {
-      "language_servers": ["!typescript-language-server", "vtsls", "..."],
+      "language_servers": [
+        "!typescript-language-server",
+        "biome",
+        "vtsls",
+        "...",
+      ],
       "format_on_save": "on",
-      "prettier": { "allowed": true }
+      "formatter": {
+        "language_server": {
+          "name": "biome",
+        },
+      },
+      "prettier": { "allowed": true },
     },
     "TSX": {
       "language_servers": ["!typescript-language-server", "vtsls", "..."],
       "format_on_save": "on",
-      "prettier": { "allowed": true }
+      "prettier": { "allowed": true },
     },
     "JavaScript": {
       "language_servers": ["!typescript-language-server", "vtsls", "..."],
       "format_on_save": "on",
-      "prettier": { "allowed": true }
+      "prettier": { "allowed": true },
+    },
+    "LaTeX": {
+      "language_servers": [],
+    },
+    "Janet": {
+      "use_autoclose": true,
+    },
+    "odoc": {
+      "tab_size": 2,
+      "preferred_line_length": 80,
+      "soft_wrap": "bounded",
+    },
+    "cram": {
+      "remove_trailing_whitespace_on_save": false,
+      "ensure_final_newline_on_save": false,
+    },
+    "Shell Script": {
+      "tab_size": 2
     }
   },
   "lsp": {
@@ -112,31 +193,34 @@
           "typeCheckingMode": "strict",
           "diagnosticSeverityOverides": {
             "reportMissingTypeStubs": false,
-            "reportRedeclaration": false
-          }
+            "reportRedeclaration": false,
+          },
         },
         "python": {
-          "pythonPath": ".venv/bin/python"
-        }
-      }
+          "pythonPath": ".venv/bin/python",
+        },
+      },
     },
-    "ocaml-lsp": {
+    "ocamllsp": {
       "initialization_options": {
         "inlayHints": {
-          "typeHints": {
-            "enable": true
-          }
-        }
-      }
-    }
+          "hintFunctionParams": true,
+          "hintPatternVariables": true,
+          "hintLetBindings": true,
+        },
+      },
+    },
   },
   "terminal": {
     "line_height": "standard",
     "font_size": 14,
-    "font_family": "Hack Nerd Font Mono"
+    "font_family": "Hack Nerd Font Mono",
   },
   "extend_comment_on_newline": false,
   "file_types": {
-    "OCaml": ["iml"]
-  }
+    "Cram": ["t", "t.err"],
+    "Make": ["Makefile*"],
+    "Markdown": ["md1", "*.md.*"],
+    "odoc": ["mld"]
+  },
 }

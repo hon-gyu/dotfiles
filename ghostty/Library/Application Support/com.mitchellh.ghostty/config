@@ -1,7 +1,6 @@
 font-family = "Hack Nerd Font Mono Regular"
 theme = "Dracula"
 font-size = 17
-keybind = shift+enter=text:\n
 
 # keybind = ctrl+h=goto_split:left
 # keybind = ctrl+j=goto_split:bottom
@@ -16,3 +15,6 @@ keybind = ctrl+x>c=new_tab
 keybind = ctrl+x>n=next_tab
 keybind = ctrl+x>p=previous_tab
 window-save-state = always
+keybind = shift+enter=text:\x1b\r
+
+command = /opt/homebrew/bin/fish

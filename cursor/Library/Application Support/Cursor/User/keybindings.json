@@ -483,5 +483,77 @@
         "key": "cmd+r cmd+m",
         "command": "-workbench.action.toggleMaximizeEditorGroup",
         "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+    },
+    // Jump to diagnosis
+    // ======
+    {
+        "key": "] q",
+        "command": "editor.action.marker.next",
+        "when": "editorFocus && vim_mode == normal"
+    },
+    {
+        "key": "alt+f8",
+        "command": "-editor.action.marker.next",
+        "when": "editorFocus"
+    },
+    {
+        "key": "[ q",
+        "command": "editor.action.marker.nextInFiles",
+        "when": "editorFocus && vim_mode == normal"
+    },
+    {
+        "key": "f8",
+        "command": "-editor.action.marker.nextInFiles",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+cmd+s",
+        "command": "workbench.action.files.saveWithoutFormatting"
+    },
+    {
+        "key": "cmd+r s",
+        "command": "-workbench.action.files.saveWithoutFormatting"
+    },
+    {
+        "key": "shift+cmd+c",
+        "command": "-workbench.action.terminal.openNativeConsole",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "imandrax.check_all"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "codelens.showLensesInCurrentLine"
+    },
+    {
+        "key": "alt+cmd+s",
+        "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+        "when": "!isAuxiliaryWindowFocusedContext"
+    },
+    {
+        "key": "shift+cmd+y",
+        "command": "copyRelativeFilePath",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "shift+alt+cmd+c",
+        "command": "-copyRelativeFilePath",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "shift+y",
+        "command": "copyFilePath",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "alt+cmd+c",
+        "command": "-copyFilePath",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "shift+escape",
+        "command": "workbench.action.toggleEditorWidths"
     }
 ]

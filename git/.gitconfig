@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = hongyu
-	email = hongyu@imandra.ai
+	email = linerwang1997@gmail.com
 # Please adapt and uncomment the following lines:
 #	name = Lin Hongyu
 #	email = linhongyu@Lins-MacBook-Pro.local
@@ -11,6 +11,9 @@
 	required = true
 	clean = git-lfs clean -- %f
 [core]
-	excludesfile = /Users/linhongyu/.gitignore_global
+	excludesFile = /Users/linhongyu/.gitignore_global
+	quotepath = false
 [push]
 	autoSetupRemote = true
+[init]
+	defaultBranch = main
